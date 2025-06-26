@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  bool _isDarkTheme = false;
+  bool _isDarkTheme = true;
 
   bool get isAuthenticated => _auth.currentUser != null;
   bool get isDarkTheme => _isDarkTheme;
@@ -15,7 +15,7 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> _loadTheme() async {
     final prefs = await SharedPreferences.getInstance();
-    _isDarkTheme = prefs.getBool('isDarkTheme') ?? false;
+    _isDarkTheme = prefs.getBool('isDarkTheme') ?? true;
     notifyListeners();
   }
 
@@ -31,7 +31,7 @@ class AuthProvider with ChangeNotifier {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       notifyListeners();
     } catch (e) {
-      throw Exception('Failed to sign in: $e');
+      throw Exception('Не удалось войти в систему: $e');
     }
   }
 
@@ -40,7 +40,7 @@ class AuthProvider with ChangeNotifier {
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
       notifyListeners();
     } catch (e) {
-      throw Exception('Failed to sign up: $e');
+      throw Exception('Не удалось зарегистрироваться: $e');
     }
   }
 

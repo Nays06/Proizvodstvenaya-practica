@@ -20,7 +20,7 @@ class _SetsScreenState extends State<SetsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Word Sets'),
+        title: const Text('Наборы слов'),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
@@ -39,9 +39,15 @@ class _SetsScreenState extends State<SetsScreen> {
               children: [
                 Expanded(
                   child: TextField(
-                    controller: _setNameController,
-                    decoration: const InputDecoration(labelText: 'New Set Name'),
-                  ),
+                      controller: _setNameController,
+                      decoration:
+                          const InputDecoration(labelText: 'Новый набор слов'),
+                      onSubmitted: (_) {
+                        if (_setNameController.text.isNotEmpty) {
+                          setsProvider.addSet(_setNameController.text);
+                          _setNameController.clear();
+                        }
+                      }),
                 ),
                 IconButton(
                   icon: const Icon(Icons.add),
@@ -62,15 +68,16 @@ class _SetsScreenState extends State<SetsScreen> {
                 final set = setsProvider.sets[index];
                 return ListTile(
                   title: Text(set.name),
-                  subtitle: Text('${set.words.length} words'),
-                  onTap: () => Navigator.pushNamed(context, '/edit_set', arguments: index),
+                  subtitle: Text('${set.words.length} слов'),
+                  onTap: () => Navigator.pushNamed(context, '/edit_set',
+                      arguments: index),
                 );
               },
             ),
           ),
           ElevatedButton(
             onPressed: () => setsProvider.resetProgress(),
-            child: const Text('Reset Progress'),
+            child: const Text('Сброс прогресса'),
           ),
         ],
       ),

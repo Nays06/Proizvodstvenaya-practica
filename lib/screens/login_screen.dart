@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Word Learning App')),
+      appBar: AppBar(title: const Text('Приложение для изучения слов')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _emailController,
               focusNode: _emailFocusNode,
               decoration: const InputDecoration(
-                labelText: 'Email',
+                labelText: 'Почта',
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.emailAddress,
@@ -49,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _passwordController,
               focusNode: _passwordFocusNode,
               decoration: const InputDecoration(
-                labelText: 'Password',
+                labelText: 'Пароль',
                 border: OutlineInputBorder(),
               ),
               obscureText: true,
@@ -58,15 +58,15 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => _handleAuth(context),
-              child: Text(_isSignUp ? 'Sign Up' : 'Sign In'),
+              child: Text(_isSignUp ? 'Зарегистрироваться' : 'Войти'),
             ),
             TextButton(
               onPressed: () => setState(() => _isSignUp = !_isSignUp),
-              child: Text(_isSignUp ? 'Already have an account? Sign In' : 'Need an account? Sign Up'),
+              child: Text(_isSignUp ? 'Уже есть аккаунет? Войти' : 'Нету аккаунта? Зарегистрироваться'),
             ),
             Consumer<AuthProvider>(
               builder: (context, authProvider, _) => SwitchListTile(
-                title: const Text('Dark Theme'),
+                title: const Text('Тёмная тема'),
                 value: authProvider.isDarkTheme,
                 onChanged: (_) => authProvider.toggleTheme(),
               ),

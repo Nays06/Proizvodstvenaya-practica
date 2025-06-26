@@ -31,7 +31,7 @@ class _EditSetScreenState extends State<EditSetScreen> {
     final set = setsProvider.sets[setIndex];
 
     return Scaffold(
-      appBar: AppBar(title: Text('Edit ${set.name}')),
+      appBar: AppBar(title: Text('Изменение ${set.name}')),
       body: Column(
         children: [
           Padding(
@@ -43,7 +43,7 @@ class _EditSetScreenState extends State<EditSetScreen> {
                     controller: _wordController,
                     focusNode: _wordFocusNode,
                     decoration: const InputDecoration(
-                      labelText: 'Word',
+                      labelText: 'Слово',
                       border: OutlineInputBorder(),
                     ),
                     onSubmitted: (_) => FocusScope.of(context).requestFocus(_translationFocusNode),
@@ -55,7 +55,7 @@ class _EditSetScreenState extends State<EditSetScreen> {
                     controller: _translationController,
                     focusNode: _translationFocusNode,
                     decoration: const InputDecoration(
-                      labelText: 'Translation',
+                      labelText: 'Перевод',
                       border: OutlineInputBorder(),
                     ),
                     onSubmitted: (_) => _addWord(setIndex, context),
