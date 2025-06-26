@@ -239,7 +239,7 @@ class _LearnScreenState extends State<LearnScreen>
     if (_allWords.length < 2) {
       return const Center(
         child: Text(
-          'Недостаточно слов для теста. Необходимо минимум 4 слова.',
+          'Недостаточно слов для теста. Необходимо минимум 2 слова.',
           style: TextStyle(fontSize: 18, color: Colors.red),
           textAlign: TextAlign.center,
         ),
@@ -303,11 +303,17 @@ class _LearnScreenState extends State<LearnScreen>
                                   setIndex, wordIndex, true);
                             }
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Правильно!')),
+                              const SnackBar(
+                                content: Text('Правильно!'),
+                                duration: Duration(milliseconds: 1000),
+                              ),
                             );
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Не верно!')),
+                              const SnackBar(
+                                content: Text('Не верно!'),
+                                duration: Duration(milliseconds: 1000),
+                              ),
                             );
                           }
                           setState(() {
@@ -321,7 +327,10 @@ class _LearnScreenState extends State<LearnScreen>
                         } catch (e) {
                           print('Ошибка в тесте: $e');
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Ошибка в тесте: $e')),
+                            SnackBar(
+                              content: Text('Ошибка в тесте: $e'),
+                              duration: Duration(milliseconds: 1500),
+                            ),
                           );
                         }
                       },
@@ -344,7 +353,7 @@ class _LearnScreenState extends State<LearnScreen>
                 },
               ),
             );
-          }),
+          }).toList(),
         ],
       ),
     );
